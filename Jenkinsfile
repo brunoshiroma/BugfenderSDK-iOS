@@ -12,7 +12,11 @@ pipeline {
         stage('Build') {
             steps {
                 //sh ' # in our example, the project is not in the root of the repository'
-                sh 'xcrun cd Example && pod install && xcodebuild -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -sdk iphoneos CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+                //sh 'xcrun cd Example && pod install && xcodebuild -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -sdk iphoneos CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+		    dir('Example'){
+			    sh 'pod install'
+			    sh 'xcrun xcodebuild -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -sdk iphoneos CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+		    }
             }
         }
     }
