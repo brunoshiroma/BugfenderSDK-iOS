@@ -15,7 +15,7 @@ pipeline {
                 //sh 'xcrun cd Example && pod install && xcodebuild -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -sdk iphoneos CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
 		    dir('Example'){
 			    sh 'pod install'
-			    sh 'xcrun xcodebuild -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -sdk iphoneos CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+			    sh 'xcodebuild test -workspace BugfenderExample.xcworkspace -scheme BugfenderExample -destination "platform=iOS Simulator,name=iPhone 6"'
 		    }
             }
         }
